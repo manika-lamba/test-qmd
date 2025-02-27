@@ -1,0 +1,69 @@
+---
+title: "dataspice"
+author: "Dr. Manika Lamba"
+date: "2/26/2025"
+format:
+   html:
+    code-fold: true
+---
+
+```{r, echo=TRUE}
+library(dataspice)
+```
+
+
+![](images/1.png)
+
+You can add options to executable code like this
+
+
+```{r, echo=TRUE}
+create_spice(dir = "data")
+```
+
+```{r, echo=TRUE}
+edit_creators()
+```
+
+```{r, echo=TRUE}
+edit_access()
+```
+
+```{r, echo=TRUE}
+edit_biblio()
+```
+
+```{r, echo=TRUE}
+edit_attributes()
+```
+
+```{r, echo=TRUE}
+write_spice()
+```
+
+
+```         
+install.packages(c("jsonlite", "listviewer"))
+```
+
+
+```{r, echo=TRUE}
+library(jsonlite)
+library(listviewer)
+library(here)
+library(magrittr)
+library(pkgdown)
+```
+
+```{r, echo=TRUE}
+jsonlite::read_json(here::here("data", "metadata", "dataspice.json")) %>% 
+    listviewer::jsonedit()
+```
+
+```{r, echo=TRUE}
+dataspice::build_site(path = "data/metadata/dataspice.json",
+  template_path = system.file("template.html5", package = "dataspice"),
+  out_path = "docs/index.html"
+)
+```
+
